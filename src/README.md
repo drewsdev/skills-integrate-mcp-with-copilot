@@ -6,6 +6,8 @@ A super simple FastAPI application that allows students to view and sign up for 
 
 - View all available extracurricular activities
 - Sign up for activities
+- Rebuild the activity catalog into a generated JSON snapshot
+- Persist signup and unregister actions back to the generated snapshot
 
 ## Getting Started
 
@@ -21,7 +23,13 @@ A super simple FastAPI application that allows students to view and sign up for 
    python app.py
    ```
 
-3. Open your browser and go to:
+3. Rebuild the generated activity snapshot when you update the catalog:
+
+   ```
+   python scripts/build_data.py
+   ```
+
+4. Open your browser and go to:
    - API documentation: http://localhost:8000/docs
    - Alternative documentation: http://localhost:8000/redoc
 
@@ -47,4 +55,4 @@ The application uses a simple data model with meaningful identifiers:
    - Name
    - Grade level
 
-All data is stored in memory, which means data will be reset when the server restarts.
+The app loads from `data/activities.generated.json` when present and falls back to the built-in catalog otherwise.
